@@ -37,6 +37,9 @@
   <meta name="msapplication-TileColor" content="#1d3557">
   <meta name="theme-color" content="#ffffff">
 
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -88,29 +91,6 @@
       --box-shadow-hover: 0 15px 35px rgba(0, 0, 0, 0.4);
     }
 
-    /* Scroll Progress Bar */
-    #progress {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 0%;
-      height: 4px;
-      background: linear-gradient(90deg, var(--secondary), var(--accent));
-      z-index: 9999;
-      transition: width 0.25s ease-out;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      font-size: 16px;
-    }
-
     body {
       font-family: var(--font-main);
       background-color: var(--bg);
@@ -158,12 +138,6 @@
       border-radius: 2px;
     }
 
-    h3 {
-      font-size: 1.5rem;
-      color: var(--text);
-      margin-bottom: 1rem;
-    }
-
     p {
       margin-bottom: 1.5rem;
       font-size: 1.1rem;
@@ -182,14 +156,6 @@
     a:focus {
       color: var(--secondary);
       outline: none;
-    }
-
-    /* Layout */
-    .container {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
     }
 
     /* Header */
@@ -212,23 +178,8 @@
       z-index: -1;
     }
 
-    header p {
-      font-size: clamp(1rem, 2vw, 1.25rem);
-      max-width: 700px;
-      margin: 0 auto 2rem;
-      color: var(--text-light);
-    }
-
     /* Navigation */
-    nav {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-
-    nav a {
+    .nav-link {
       position: relative;
       padding: 0.5rem 0;
       font-weight: 500;
@@ -236,7 +187,7 @@
       transition: var(--transition);
     }
 
-    nav a::after {
+    .nav-link::after {
       content: '';
       position: absolute;
       left: 0;
@@ -247,15 +198,15 @@
       transition: var(--transition);
     }
 
-    nav a:hover,
-    nav a:focus,
-    nav a.active {
+    .nav-link:hover,
+    .nav-link:focus,
+    .nav-link.active {
       color: var(--primary);
     }
 
-    nav a:hover::after,
-    nav a:focus::after,
-    nav a.active::after {
+    .nav-link:hover::after,
+    .nav-link:focus::after,
+    .nav-link.active::after {
       width: 100%;
     }
 
@@ -270,23 +221,6 @@
     }
 
     /* About Section */
-    #about {
-      display: flex;
-      align-items: center;
-      min-height: 100vh;
-    }
-
-    .about-content {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: center;
-    }
-
-    .about-text {
-      max-width: 600px;
-    }
-
     .about-image {
       position: relative;
       border-radius: var(--border-radius);
@@ -308,13 +242,6 @@
     }
 
     /* Skills Section */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-
     .skill-card {
       background-color: var(--white);
       padding: 2rem;
@@ -322,6 +249,7 @@
       box-shadow: var(--box-shadow);
       transition: var(--transition);
       border-top: 3px solid var(--primary);
+      height: 100%;
     }
 
     .dark-mode .skill-card {
@@ -348,6 +276,7 @@
 
     .skill-list {
       list-style: none;
+      padding-left: 0;
     }
 
     .skill-list li {
@@ -364,13 +293,6 @@
     }
 
     /* Projects Section */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-
     .project-card {
       background-color: var(--white);
       border-radius: var(--border-radius);
@@ -379,6 +301,7 @@
       transition: var(--transition);
       display: flex;
       flex-direction: column;
+      height: 100%;
     }
 
     .dark-mode .project-card {
@@ -561,23 +484,11 @@
     }
 
     /* Contact Section */
-    .contact-container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: center;
-    }
-
-    .contact-info {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-
     .contact-method {
       display: flex;
       align-items: flex-start;
       gap: 1rem;
+      margin-bottom: 1.5rem;
     }
 
     .contact-icon {
@@ -611,10 +522,6 @@
 
     .dark-mode .contact-form {
       background-color: var(--dark-light);
-    }
-
-    .form-group {
-      margin-bottom: 1.5rem;
     }
 
     .form-label {
@@ -682,24 +589,10 @@
       text-align: center;
     }
 
-    .footer-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1.5rem;
-    }
-
     .footer-logo {
       font-size: 1.5rem;
       font-weight: 700;
       color: var(--white);
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-      justify-content: center;
     }
 
     .footer-links a {
@@ -711,11 +604,6 @@
     .footer-links a:hover {
       opacity: 1;
       text-decoration: underline;
-    }
-
-    .social-links {
-      display: flex;
-      gap: 1rem;
     }
 
     .social-link {
@@ -846,100 +734,19 @@
       animation: float 4s ease-in-out infinite;
     }
 
-    /* Responsive Design */
-    @media (max-width: 992px) {
-      .about-content,
-      .contact-container {
-        grid-template-columns: 1fr;
-      }
-      
-      .about-image {
-        order: -1;
-        max-width: 500px;
-        margin: 0 auto;
-      }
-      
-      .timeline::before {
-        left: 2rem;
-      }
-      .contact-container {
-  display: flex;
-  gap: 2rem;
-  flex-wrap: wrap;
-}
-
-.contact-info {
-  flex: 1 1 300px;
-}
-
-.contact-message {
-  flex: 1 1 300px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  font-size: 1.1rem;
-  color: #444;
-}
-      .timeline-item:nth-child(odd),
-      .timeline-item:nth-child(even) {
-        padding-left: calc(2rem + 16px);
-        padding-right: 0;
-        text-align: left;
-      }
-      
-      .timeline-dot {
-        left: 2rem;
-      }
+    /* Scroll Progress Bar */
+    #progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--secondary), var(--accent));
+      z-index: 9999;
+      transition: width 0.25s ease-out;
     }
 
-    @media (max-width: 768px) {
-      .projects-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      section {
-        padding: 3rem 0;
-      }
-      
-      header {
-        padding: 4rem 0 2rem;
-      }
-      
-      nav {
-        gap: 1rem;
-      }
-    }
-
-    @media (max-width: 576px) {
-      .fab-container {
-        bottom: 1rem;
-        right: 1rem;
-      }
-      
-      .theme-toggle {
-        top: 1rem;
-        right: 1rem;
-      }
-      
-      .toggle-btn {
-        width: 40px;
-        height: 40px;
-      }
-    }
-
-    /* Utility Classes */
-    .text-center {
-      text-align: center;
-    }
-
-    .mb-0 {
-      margin-bottom: 0;
-    }
-
-    .mt-3 {
-      margin-top: 3rem;
-    }
-
+    /* Section title center alignment */
     .section-title {
       text-align: center;
       margin-bottom: 3rem;
@@ -959,6 +766,55 @@
       left: 0;
       z-index: -1;
     }
+
+    /* Responsive adjustments for timeline */
+    @media (max-width: 992px) {
+      .timeline::before {
+        left: 2rem;
+      }
+      
+      .timeline-item:nth-child(odd),
+      .timeline-item:nth-child(even) {
+        padding-left: calc(2rem + 16px);
+        padding-right: 0;
+        text-align: left;
+      }
+      
+      .timeline-dot {
+        left: 2rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      section {
+        padding: 3rem 0;
+      }
+      
+      header {
+        padding: 4rem 0 2rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .fab-container {
+        bottom: 1rem;
+        right: 1rem;
+      }
+      
+      .theme-toggle {
+        top: 1rem;
+        right: 1rem;
+      }
+      
+      .toggle-btn {
+        width: 40px;
+        height: 40px;
+      }
+      
+      .project-links {
+        flex-direction: column;
+      }
+    }
   </style>
 </head>
 <body>
@@ -972,39 +828,47 @@
   <!-- Header -->
   <header>
     <div class="container">
-      <h1>Nwoga David</h1>
-      <p>Full-Stack Developer & Data Analyst – Crafting digital experiences that combine form and function</p>
-      <nav role="navigation" aria-label="Primary navigation">
-        <a href="#about" class="nav-link">About</a>
-        <a href="#skills" class="nav-link">Skills</a>
-        <a href="#projects" class="nav-link">Projects</a>
-        <a href="#experience" class="nav-link">Experience</a>
-        <a href="#contact" class="nav-link">Contact</a>
-      </nav>
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <h1>Nwoga David</h1>
+          <p class="lead">Full-Stack Developer & Data Analyst – Crafting digital experiences that combine form and function</p>
+          <nav class="d-flex flex-wrap justify-content-center gap-3 mt-4" role="navigation" aria-label="Primary navigation">
+            <a href="#about" class="nav-link">About</a>
+            <a href="#skills" class="nav-link">Skills</a>
+            <a href="#projects" class="nav-link">Projects</a>
+            <a href="#experience" class="nav-link">Experience</a>
+            <a href="#contact" class="nav-link">Contact</a>
+          </nav>
+        </div>
+      </div>
     </div>
   </header>
 
   <!-- About Section -->
-  <section id="about" class="container">
-    <div class="about-content">
-      <div class="about-text">
-        <h2>About Me</h2>
-        <p>
-          Hello! I'm <strong>Nwoga David</strong>, a passionate full-stack developer and data analyst with over 2 years of experience building digital solutions that solve real-world problems.
-        </p>
-        <p>
-          My journey in tech began with a curiosity about how things work, which evolved into a career creating web applications that are not only visually appealing but also performant, accessible, and user-friendly.
-        </p>
-        <p>
-          When I'm not coding, you can find me contributing to open-source projects, exploring new data visualization techniques, or mentoring aspiring developers.
-        </p>
-        <div class="mt-3">
-          <a href="#contact" class="btn btn--primary">Get In Touch</a>
+  <section id="about">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <h2>About Me</h2>
+          <p>
+            Hello! I'm <strong>Nwoga David</strong>, a passionate full-stack developer and data analyst with over 2 years of experience building digital solutions that solve real-world problems.
+          </p>
+          <p>
+            My journey in tech began with a curiosity about how things work, which evolved into a career creating web applications that are not only visually appealing but also performant, accessible, and user-friendly.
+          </p>
+          <p>
+            When I'm not coding, you can find me contributing to open-source projects, exploring new data visualization techniques, or mentoring aspiring developers.
+          </p>
+          <div class="mt-4">
+            <a href="#contact" class="btn btn--primary">Get In Touch</a>
+          </div>
         </div>
-      </div>
-      <div class="about-image animate-float">
-        <!-- Replace with your actual image -->
-        <img src="https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Nwoga David" loading="lazy">
+        <div class="col-lg-6 mt-5 mt-lg-0">
+          <div class="about-image animate-float">
+            <!-- Replace with your actual image -->
+            <img src="https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Nwoga David" loading="lazy" class="img-fluid">
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -1017,215 +881,227 @@
         <p>Here are the technologies and tools I work with on a daily basis</p>
       </div>
       
-      <div class="skills-grid">
-        <div class="skill-card">
-          <h3>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
-            </svg>
-            Frontend Development
-          </h3>
-          <ul class="skill-list">
-            <li>HTML</li>
-            <li>Wordpress</li>
-            <li>CSS</li>
-            <li>Javascript</li>
-            <li>Bootstrap</li>
-            <li>Materialize</li>
-          </ul>
+      <div class="row">
+        <div class="col-md-6 mb-4">
+          <div class="skill-card">
+            <h3>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+              </svg>
+              Frontend Development
+            </h3>
+            <ul class="skill-list">
+              <li>HTML</li>
+              <li>Wordpress</li>
+              <li>CSS</li>
+              <li>Javascript</li>
+              <li>Bootstrap</li>
+              <li>Materialize</li>
+            </ul>
+          </div>
         </div>
         
-        <div class="skill-card">
-          <h3>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
-            </svg>
-            Backend Development
-          </h3>
-          <ul class="skill-list">
-            <li>PostGreSQL</li>
-            <li>PHP</li>
-            <li>MySQL</li>
-            <li>Website Management</li>
-            <li>Hosting</li>
-          </ul>
+        <div class="col-md-6 mb-4">
+          <div class="skill-card">
+            <h3>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+              </svg>
+              Backend Development
+            </h3>
+            <ul class="skill-list">
+              <li>PostGreSQL</li>
+              <li>PHP</li>
+              <li>MySQL</li>
+              <li>Website Management</li>
+              <li>Hosting</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-<!-- Projects Section -->
-<section id="projects">
-  <div class="container">
-    <div class="section-title">
-      <h2>Featured Projects</h2>
-      <p>Here are some of my recent projects that I'm proud of</p>
-    </div>
-    
-    <div class="projects-grid">
-      <!-- Project 1 -->
-      <div class="project-card">
-        <div class="project-image">
-          <img src="https://images.unsplash.com/photo-1604014237744-df7a8c6d6e3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80" 
-               alt="The Grand Award Platform" loading="lazy">
-        </div>
-        <div class="project-content">
-          <h3 class="project-title">TheGrandAward.com</h3>
-          <p class="project-description">
-            A fully responsive awards platform with real-time voting, admin dashboard, and secure authentication.
-          </p>
-          <div class="project-tech">
-            <span class="tech-tag">Bootstrap</span>
-            <span class="tech-tag">PHP</span>
-            <span class="tech-tag">Hostinger</span>
-            <span class="tech-tag">CSS</span>
-          </div>
-        </div>
+  <!-- Projects Section -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-title">
+        <h2>Featured Projects</h2>
+        <p>Here are some of my recent projects that I'm proud of</p>
       </div>
       
-      <!-- Project 2 -->
-      <div class="project-card">
-        <div class="project-image">
-          <img src="https://images.unsplash.com/photo-1581578731548-c64695cc695c?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80" 
-               alt="Cleaning Service Website" loading="lazy">
-        </div>
-        <div class="project-content">
-          <h3 class="project-title">Ivoryandsagecleaning.co.uk & Maycleaningservice.co.uk</h3>
-          <p class="project-description">
-            A fully working WordPress-built cleaning service website with booking forms and professional design.
-          </p>
-          <div class="project-tech">
-            <span class="tech-tag">WordPress</span>
-            <span class="tech-tag">SureForms</span>
-          </div>
-        </div> 
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- Experience Section -->
-<section id="experience">
-  <div class="container">
-    <div class="section-title">
-      <h2>Professional Experience</h2>
-      <p>My journey through the tech industry</p>
-    </div>
-    
-    <div class="timeline">
-
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <span class="timeline-date">2023 - 2024</span>
-          <h3 class="timeline-title">Data Analyst</h3>
-          <span class="timeline-company">Gateway Computers</span>
-          <p class="timeline-description">
-            Worked with SQL and PgAdmin to manage, query, and analyze datasets. Designed custom reports and simplified data workflows for business clients, improving decision-making efficiency.
-          </p>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <span class="timeline-date">2024 - 2025</span>
-          <h3 class="timeline-title">Front-End & Back-End Developer</h3>
-          <span class="timeline-company">Gateway Computers</span>
-          <p class="timeline-description">
-            Built and maintained full websites using WordPress, HTML, and CSS. Customized themes and plugins to meet client needs while ensuring responsive and user-friendly design across devices.
-          </p>
-        </div>
-      </div>
-      
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <span class="timeline-date">2025 - Present</span>
-          <h3 class="timeline-title">Senior Front-End & Back-End Developer</h3>
-          <span class="timeline-company">Gateway Computers</span>
-          <p class="timeline-description">
-            Contributed to the development and management of multiple company and client websites. Improved site performance, handled database integration, and collaborated with cross-functional teams to deliver scalable digital solutions.
-          </p>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-</section>
-
-
-<!-- Contact Section -->
-<section id="contact">
-  <div class="container">
-    <div class="section-title">
-      <h2>Get In Touch</h2>
-      <p>Have a project in mind or want to collaborate? I'd love to hear from you!</p>
-    </div>
-    
-    <div class="contact-container">
-      <div class="contact-info">
-        <div class="contact-method">
-          <div class="contact-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-              <polyline points="22,6 12,13 2,6"></polyline>
-            </svg>
-          </div>
-          <div class="contact-details">
-            <h3>Email</h3>
-            <a href="mailto:nwogadavid90@gmail.com">nwogadavid90@gmail.com</a>
+      <div class="row">
+        <!-- Project 1 -->
+        <div class="col-lg-6 mb-4">
+          <div class="project-card">
+            <div class="project-image">
+              <img src="https://images.unsplash.com/photo-1604014237744-df7a8c6d6e3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80" 
+                   alt="The Grand Award Platform" loading="lazy" class="img-fluid">
+            </div>
+            <div class="project-content">
+            <h3 class="project-title">
+  <a href="https://thegrandaward.com" target="_blank">TheGrandAward.com</a>
+</h3>
+              <p class="project-description">
+                A fully responsive awards platform with real-time voting, admin dashboard, and secure authentication.
+              </p>
+              <div class="project-tech">
+                <span class="tech-tag">Bootstrap</span>
+                <span class="tech-tag">PHP</span>
+                <span class="tech-tag">Hostinger</span>
+                <span class="tech-tag">CSS</span>
+              </div>
+            </div>
           </div>
         </div>
         
-        <div class="contact-method">
-          <div class="contact-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-            </svg>
+        <!-- Project 2 -->
+        <div class="col-lg-6 mb-4">
+          <div class="project-card">
+            <div class="project-image">
+              <img src="https://images.unsplash.com/photo-1581578731548-c64695cc695c?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80" 
+                   alt="Cleaning Service Website" loading="lazy" class="img-fluid">
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">
+  <a href="https://ivoryandsagecleaning.co.uk" target="_blank">Ivoryandsagecleaning.co.uk</a> & 
+  <a href="https://maycleaningservice.co.uk" target="_blank">Maycleaningservice.co.uk</a>
+</h3>
+              <p class="project-description">
+                A fully working WordPress-built cleaning service website with booking forms and professional design.
+              </p>
+              <div class="project-tech">
+                <span class="tech-tag">WordPress</span>
+                <span class="tech-tag">SureForms</span>
+              </div>
+            </div> 
           </div>
-          <div class="contact-details">
-            <h3>Phone</h3>
-            <a href="tel:+2349038134221">+234 903 813 4221</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section id="experience">
+    <div class="container">
+      <div class="section-title">
+        <h2>Professional Experience</h2>
+        <p>My journey through the tech industry</p>
+      </div>
+      
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">2023 - 2024</span>
+            <h3 class="timeline-title">Data Analyst</h3>
+            <span class="timeline-company">Gateway Computers</span>
+            <p class="timeline-description">
+              Worked with SQL and PgAdmin to manage, query, and analyze datasets. Designed custom reports and simplified data workflows for business clients, improving decision-making efficiency.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">2024 - 2025</span>
+            <h3 class="timeline-title">Front-End & Back-End Developer</h3>
+            <span class="timeline-company">Gateway Computers</span>
+            <p class="timeline-description">
+              Built and maintained full websites using WordPress, HTML, and CSS. Customized themes and plugins to meet client needs while ensuring responsive and user-friendly design across devices.
+            </p>
           </div>
         </div>
         
-        <div class="contact-method">
-          <div class="contact-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-              <circle cx="12" cy="10" r="3"></circle>
-            </svg>
-          </div>
-          <div class="contact-details">
-            <h3>Location</h3>
-            <p>Abuja, Nigeria</p>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">2025 - Present</span>
+            <h3 class="timeline-title">Senior Front-End & Back-End Developer</h3>
+            <span class="timeline-company">Gateway Computers</span>
+            <p class="timeline-description">
+              Contributed to the development and management of multiple company and client websites. Improved site performance, handled database integration, and collaborated with cross-functional teams to deliver scalable digital solutions.
+            </p>
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-title">
+        <h2>Get In Touch</h2>
+        <p>Have a project in mind or want to collaborate? I'd love to hear from you!</p>
+      </div>
       
-      <div class="contact-message">
-        <h3>Let's Connect!</h3>
-        <p>
-          Feel free to reach out via email or phone. Whether it's a question, a project idea, or just to say hello, I'm always happy to chat.
-        </p>
-        <p>
-          You can also find me on social media — let's keep the conversation going!
-        </p>
+      <div class="row">
+        <div class="col-lg-6 mb-5 mb-lg-0">
+          <div class="contact-info">
+            <div class="contact-method">
+              <div class="contact-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+              </div>
+              <div class="contact-details">
+                <h3>Email</h3>
+                <a href="mailto:nwogadavid90@gmail.com">nwogadavid90@gmail.com</a>
+              </div>
+            </div>
+            
+            <div class="contact-method">
+              <div class="contact-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+              </div>
+              <div class="contact-details">
+                <h3>Phone</h3>
+                <a href="tel:+2349038134221">+234 903 813 4221</a>
+              </div>
+            </div>
+            
+            <div class="contact-method">
+              <div class="contact-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+              </div>
+              <div class="contact-details">
+                <h3>Location</h3>
+                <p>Abuja, Nigeria</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-6">
+          <div class="contact-message">
+            <h3>Let's Connect!</h3>
+            <p>
+              Feel free to reach out via email or phone. Whether it's a question, a project idea, or just to say hello, I'm always happy to chat.
+            </p>
+            <p>
+              You can also find me on social media — let's keep the conversation going!
+            </p>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
-
+  </section>
 
   <!-- Footer -->
   <footer>
     <div class="container">
-      <div class="footer-content">
-        <a href="#" class="footer-logo">Nwoga David</a>
+      <div class="text-center">
+        <a href="#" class="footer-logo d-inline-block mb-3">Nwoga David</a>
         
-        <div class="footer-links">
+        <div class="d-flex flex-wrap justify-content-center gap-3 mb-4 footer-links">
           <a href="#about">About</a>
           <a href="#skills">Skills</a>
           <a href="#projects">Projects</a>
@@ -1233,31 +1109,30 @@
           <a href="#contact">Contact</a>
         </div>
         
-       <div class="social-links">
-  <a href="https://twitter.com/LoganRMXS" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Twitter">
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
-    </svg>
-  </a>
-  
-  <a href="https://wa.me/2349038134221" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="WhatsApp">
-    <!-- Official WhatsApp SVG icon -->
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#25D366" aria-hidden="true">
-      <path d="M20.52 3.48A11.9 11.9 0 0012 0C5.373 0 0 5.373 0 12a11.916 11.916 0 001.686 6.01L0 24l6.06-1.683A11.93 11.93 0 0012 24c6.627 0 12-5.373 12-12 0-3.194-1.247-6.19-3.48-8.52zM12 22c-2.122 0-4.11-.66-5.73-1.79l-.41-.25-3.6 1 1-3.6-.26-.41A9.967 9.967 0 012 12C2 6.477 6.477 2 12 2c2.683 0 5.18 1.05 7.07 2.93A9.969 9.969 0 0122 12c0 5.523-4.477 10-10 10zm5.44-7.12c-.29-.15-1.7-.84-1.96-.93-.26-.1-.44-.15-.62.15-.18.3-.69.93-.85 1.12-.16.19-.31.21-.58.07-.29-.15-1.22-.45-2.33-1.44-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.44.13-.59.13-.13.29-.31.44-.46.15-.15.2-.26.3-.43.1-.18.05-.33-.02-.46-.07-.13-.62-1.5-.85-2.07-.22-.54-.45-.46-.62-.47h-.53c-.18 0-.46.07-.7.33-.25.26-.94.92-.94 2.25s.96 2.6 1.1 2.78c.14.19 1.9 2.9 4.6 4.06.64.28 1.13.45 1.52.58.64.22 1.22.19 1.68.12.51-.08 1.7-.69 1.94-1.35.25-.66.25-1.23.18-1.35-.07-.11-.26-.18-.55-.32z"/>
-    </svg>
-  </a>
+        <div class="d-flex justify-content-center gap-3 mb-4">
+          <a href="https://twitter.com/LoganRMXS" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Twitter">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+            </svg>
+          </a>
+          
+          <a href="https://wa.me/2349038134221" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="WhatsApp">
+            <!-- Official WhatsApp SVG icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#25D366" aria-hidden="true">
+              <path d="M20.52 3.48A11.9 11.9 0 0012 0C5.373 0 0 5.373 0 12a11.916 11.916 0 001.686 6.01L0 24l6.06-1.683A11.93 11.93 0 0012 24c6.627 0 12-5.373 12-12 0-3.194-1.247-6.19-3.48-8.52zM12 22c-2.122 0-4.11-.66-5.73-1.79l-.41-.25-3.6 1 1-3.6-.26-.41A9.967 9.967 0 012 12C2 6.477 6.477 2 12 2c2.683 0 5.18 1.05 7.07 2.93A9.969 9.969 0 0122 12c0 5.523-4.477 10-10 10zm5.44-7.12c-.29-.15-1.7-.84-1.96-.93-.26-.1-.44-.15-.62.15-.18.3-.69.93-.85 1.12-.16.19-.31.21-.58.07-.29-.15-1.22-.45-2.33-1.44-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.44.13-.59.13-.13.29-.31.44-.46.15-.15.2-.26.3-.43.1-.18.05-.33-.02-.46-.07-.13-.62-1.5-.85-2.07-.22-.54-.45-.46-.62-.47h-.53c-.18 0-.46.07-.7.33-.25.26-.94.92-.94 2.25s.96 2.6 1.1 2.78c.14.19 1.9 2.9 4.6 4.06.64.28 1.13.45 1.52.58.64.22 1.22.19 1.68.12.51-.08 1.7-.69 1.94-1.35.25-.66.25-1.23.18-1.35-.07-.11-.26-.18-.55-.32z"/>
+            </svg>
+          </a>
 
-  <a href="mailto:nwogadavid90@gmail.com" class="social-link" aria-label="Email">
-    <!-- Email icon -->
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-      <path d="M4 4h16v16H4z" stroke="none"/>
-      <polyline points="22,6 12,13 2,6" />
-    </svg>
-  </a>
-</div>
-
+          <a href="mailto:nwogadavid90@gmail.com" class="social-link" aria-label="Email">
+            <!-- Email icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+              <path d="M4 4h16v16H4z" stroke="none"/>
+              <polyline points="22,6 12,13 2,6" />
+            </svg>
+          </a>
+        </div>
         
-        <p class="copyright">© <span id="year"></span> Nwoga David. All rights reserved.</p>
+        <p class="copyright mb-0">© <span id="year"></span> Nwoga David. All rights reserved.</p>
       </div>
     </div>
   </footer>
@@ -1289,6 +1164,9 @@
     </button>
   </div>
 
+  <!-- Bootstrap JS Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
   <!-- Particles.js Script -->
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
@@ -1453,70 +1331,6 @@
       }
     });
 
-    // Form submission
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-      contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const formData = new FormData(contactForm);
-        const submitBtn = contactForm.querySelector('button[type="submit"]');
-        const originalBtnText = submitBtn.innerHTML;
-        
-        // Show loading state
-        submitBtn.innerHTML = `
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="animate-spin">
-            <path d="M21 12a9 9 0 1 1-6.219-8.56"></path>
-          </svg>
-          Sending...
-        `;
-        submitBtn.disabled = true;
-        
-        fetch(contactForm.action, {
-          method: 'POST',
-          body: formData,
-          headers: {
-            'Accept': 'application/json'
-          }
-        })
-        .then(response => {
-          if (response.ok) {
-            // Show success message
-            submitBtn.innerHTML = `
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline>
-              </svg>
-              Message Sent!
-            `;
-            contactForm.reset();
-            
-            // Reset button after 3 seconds
-            setTimeout(() => {
-              submitBtn.innerHTML = originalBtnText;
-              submitBtn.disabled = false;
-            }, 3000);
-          } else {
-            throw new Error('Network response was not ok');
-          }
-        })
-        .catch(error => {
-          // Show error message
-          submitBtn.innerHTML = `
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line>
-            </svg>
-            Error Sending
-          `;
-          
-          // Reset button after 3 seconds
-          setTimeout(() => {
-            submitBtn.innerHTML = originalBtnText;
-            submitBtn.disabled = false;
-          }, 3000);
-        });
-      });
-    }
-
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
@@ -1568,6 +1382,4 @@
   </script>
 
 </body>
-
 </html>
-
